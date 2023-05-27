@@ -5,6 +5,10 @@ return {
     opts = function()
       local dashboard = require("alpha.themes.dashboard")
       local logo = [[
+
+
+
+
            ▄ ▄                   
        ▄   ▄▄▄     ▄ ▄▄▄ ▄ ▄     
        █ ▄ █▄█ ▄▄▄ █ █▄█ █ █     
@@ -14,15 +18,15 @@ return {
 ▄ █ █▄█ █▄█ █ █ █▄█ █ █▄█ ▄▄▄ █ █
 █▄█ ▄ █▄▄█▄▄█ █ ▄▄█ █ ▄ █ █▄█▄█ █
     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█ █▄█▄▄▄█   
+
+       [ ━━━━━━ ❖  ━━━━━━ ]
     ]]
 
       dashboard.section.header.val = vim.split(logo, "\n")
       dashboard.section.buttons.val = {
         dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
         dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-        dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
         dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
-        dashboard.button("q", " " .. " Quit", ":qa<CR>"),
       }
       for _, button in ipairs(dashboard.section.buttons.val) do
         button.opts.hl = "AlphaButtons"
@@ -53,7 +57,7 @@ return {
         callback = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          dashboard.section.footer.val = "Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
+          -- dashboard.section.footer.val = "Neovim loaded " .. stats.count .. " plugins in " .. ms .. "ms"
           pcall(vim.cmd.AlphaRedraw)
         end,
       })
